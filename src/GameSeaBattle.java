@@ -23,7 +23,7 @@ public class GameSeaBattle {
 
         int countShip = 0;
 
-        ShipManagement drDC[] = new ShipManagement[5];
+        ShipManagement drDC[] = new ShipManagement[4];
         for(int i = 0; i<drDC.length ; i++){
             drDC[i] = new ShipManagement();
             if(drDC[i].createShip()){countShip++;}
