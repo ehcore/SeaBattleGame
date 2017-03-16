@@ -12,7 +12,7 @@ public class ShipManagement {
         ship = new Ship();
 
         Direction direction = getDirection();
-        ArrayList<String> locationCells = ship.getLocationCells();
+        ArrayList<String> locationCells;
 
         boolean canBeInstall;
 
@@ -23,15 +23,9 @@ public class ShipManagement {
         Date startDate = new Date();
 
         do{
-
-            //System.out.print(".");
-
             Date endDate = new Date();
-
             long quantitySec = endDate.getTime() - startDate.getTime();
-
             if((quantitySec) > 5){ return false;}
-
 
             line = getLine(quantityCells);
 
@@ -44,7 +38,6 @@ public class ShipManagement {
             int afterFirstCell = firstCell > 0 ? firstCell - 1 : 0;
             int beforeLastCell = lastCell < (quantityCells -1) ? lastCell + 1 : quantityCells -1;
 
-
             HashMap<String,Integer> hashMap = new HashMap<String,Integer>(4);
             hashMap.put("startLine",startLine);
             hashMap.put("endLine",endLine);
@@ -54,9 +47,6 @@ public class ShipManagement {
             canBeInstall = checkCells(hashMap,direction);
 
         } while(!canBeInstall);
-
-
-
 
         String[][] massive = GameSeaBattle.place4Game;
 
@@ -78,15 +68,12 @@ public class ShipManagement {
             }
         }
 
-
         for(String cell : locationCells){
             System.out.println(cell);
         }
 
         ship.setLocationCells(locationCells);
-
         return true;
-
     }
 
     static boolean fire(ShipManagement shipManage[],String cell){
@@ -102,26 +89,20 @@ public class ShipManagement {
         }
         System.out.println("Fail! " + cell);
         return false;
-
     }
 
     Direction getDirection(){
         int dir = (int) (Math.random()*10);
-        //System.out.println(dir);
         if(dir<5) return Direction.Horizontal;
         else return Direction.Vertical;
     }
 
     int getLine(int quantityCells){
         int line = (int) (Math.random()* quantityCells);
-
         return line;
-
     }
 
     private int getFirstCell(){
-
-
         int firstCell;
         do{
             firstCell = (int) (Math.random() * 10);
@@ -161,17 +142,10 @@ public class ShipManagement {
         for(int i = 0; i<shipManage.length ; i++){
             ArrayList<String> locationCells = shipManage[i].ship.getLocationCells();
             if(locationCells == null){continue;}
-         //   try {
                 if (!locationCells.isEmpty()) {
                     return true;
                 }
-//            }catch(NullPointerException exc){
-//                System.out.println("danger!!");
-//                return false;
-//            }
         }
         return false;
-
     }
-
 }

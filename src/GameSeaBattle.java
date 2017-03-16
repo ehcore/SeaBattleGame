@@ -21,7 +21,6 @@ public class GameSeaBattle {
 
         System.out.println("The game starting");
 
-
         quantityCells = 7;
         place4Game = makeMassive(quantityCells);
 
@@ -42,11 +41,8 @@ public class GameSeaBattle {
 
         int num = 0;
 
-
         while (ShipManagement.isStillAliveShips(shipManage)) {
-
             System.out.println("Enter cell for fire:");
-
 
             BufferedReader reader = new GameHelper().getUserInput();
             try {
@@ -56,10 +52,7 @@ public class GameSeaBattle {
             } catch (IOException exc) {
                 System.out.println("Error reading frome console, try again");
             }
-
-            }
-
+        }
         System.out.println("Ships destroed on " + num + " steps, congratulations!");
-
     }
 }

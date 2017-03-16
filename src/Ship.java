@@ -12,7 +12,4 @@ public class Ship {
     public void setLocationCells(ArrayList<String> locationCells) {
         this.locationCells = locationCells;
     }
-
-
-
 }
