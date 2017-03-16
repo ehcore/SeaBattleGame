@@ -26,6 +26,7 @@ public class GameSeaBattle {
 
         int countShip = 0;
 
+
         System.out.println("Creation of ships");
 
         ShipManagement shipManage[] = new ShipManagement[5];
