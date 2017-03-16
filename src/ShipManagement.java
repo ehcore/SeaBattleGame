@@ -3,9 +3,7 @@ import java.util.*;
 
 public class ShipManagement {
 
-
     Ship ship;
-    private int numberOfTurns;
 
     boolean createShip(){
         int quantityCells = GameSeaBattle.quantityCells;
@@ -25,6 +23,8 @@ public class ShipManagement {
         Date startDate = new Date();
 
         do{
+
+            //System.out.print(".");
 
             Date endDate = new Date();
 
@@ -89,10 +89,21 @@ public class ShipManagement {
 
     }
 
-    void fire(){
+    static boolean fire(ShipManagement shipManage[],String cell){
+
+        System.out.println("You entered:" + cell);
+        for(int i = 0; i<shipManage.length ; i++){
+            ArrayList<String> locationCells = shipManage[i].ship.getLocationCells();
+            if(locationCells == null){continue;}
+            if(locationCells.contains(cell)){
+                System.out.println("Hit! " + cell);
+                locationCells.remove(cell);
+                return true;}
+        }
+        System.out.println("Fail! " + cell);
+        return false;
 
     }
-
 
     Direction getDirection(){
         int dir = (int) (Math.random()*10);
@@ -100,7 +111,6 @@ public class ShipManagement {
         if(dir<5) return Direction.Horizontal;
         else return Direction.Vertical;
     }
-
 
     int getLine(int quantityCells){
         int line = (int) (Math.random()* quantityCells);
@@ -144,6 +154,24 @@ public class ShipManagement {
             }
         }
         return true;
+    }
+
+    static boolean isStillAliveShips(ShipManagement shipManage[]){
+
+        for(int i = 0; i<shipManage.length ; i++){
+            ArrayList<String> locationCells = shipManage[i].ship.getLocationCells();
+            if(locationCells == null){continue;}
+         //   try {
+                if (!locationCells.isEmpty()) {
+                    return true;
+                }
+//            }catch(NullPointerException exc){
+//                System.out.println("danger!!");
+//                return false;
+//            }
+        }
+        return false;
+
     }
 
 }
