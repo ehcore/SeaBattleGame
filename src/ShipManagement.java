@@ -11,7 +11,9 @@ public class ShipManagement {
 
         ship = new Ship();
 
-        Direction direction = getDirection();
+        ManagementHelper managementHelper = new ManagementHelper();
+
+        Direction direction = managementHelper.getDirection();
         ArrayList<String> locationCells;
 
         boolean canBeInstall;
@@ -27,12 +29,12 @@ public class ShipManagement {
             long quantitySec = endDate.getTime() - startDate.getTime();
             if((quantitySec) > 5){ return false;}
 
-            line = getLine(quantityCells);
+            line = managementHelper.getLine(quantityCells);
 
             int startLine = line > 0 ? line - 1 : 0;
             int endLine   = line < (quantityCells -1) ? line + 1 : quantityCells -1;
 
-            firstCell = getFirstCell();
+            firstCell = managementHelper.getFirstCell();
             lastCell  = firstCell + size;
 
             int afterFirstCell = firstCell > 0 ? firstCell - 1 : 0;
@@ -44,7 +46,7 @@ public class ShipManagement {
             hashMap.put("afterFirstCell",afterFirstCell);
             hashMap.put("beforeLastCell",beforeLastCell);
 
-            canBeInstall = checkCells(hashMap,direction);
+            canBeInstall = managementHelper.checkCells(hashMap,direction);
 
         } while(!canBeInstall);
 
@@ -91,61 +93,68 @@ public class ShipManagement {
         return false;
     }
 
-    Direction getDirection(){
-        int dir = (int) (Math.random()*10);
-        if(dir<5) return Direction.Horizontal;
-        else return Direction.Vertical;
-    }
-
-    int getLine(int quantityCells){
-        int line = (int) (Math.random()* quantityCells);
-        return line;
-    }
-
-    private int getFirstCell(){
-        int firstCell;
-        do{
-            firstCell = (int) (Math.random() * 10);
-        }
-        while (firstCell>(GameSeaBattle.quantityCells - GameSeaBattle.size - 1));
-
-        return firstCell;
-    }
-
-    public boolean checkCells(HashMap hashMap, Direction dir){
-
-        int startLine      = (int) hashMap.get("startLine");
-        int endLine        = (int) hashMap.get("endLine");
-        int afterFirstCell = (int) hashMap.get("afterFirstCell");
-        int beforeLastCell = (int) hashMap.get("beforeLastCell");
-
-        String[][] massive = GameSeaBattle.place4Game;
-
-        if (dir == Direction.Vertical) {
-            for (int i = afterFirstCell; i <= beforeLastCell; i++) {
-                for (int j = startLine; j <= endLine; j++) {
-                    if (massive[i][j] == null) return false;
-                }
-            }
-        }else if(dir == Direction.Horizontal){
-            for (int i =  startLine ; i <=  endLine ; i++) {
-                for (int j = afterFirstCell; j <= beforeLastCell; j++) {
-                    if (massive[i][j] == null) return false;
-                }
-            }
-        }
-        return true;
-    }
-
     static boolean isStillAliveShips(ShipManagement shipManage[]){
 
         for(int i = 0; i<shipManage.length ; i++){
             ArrayList<String> locationCells = shipManage[i].ship.getLocationCells();
             if(locationCells == null){continue;}
-                if (!locationCells.isEmpty()) {
-                    return true;
-                }
+            if (!locationCells.isEmpty()) {
+                return true;
+            }
         }
         return false;
+    }
+
+
+
+    class ManagementHelper{
+
+        Direction getDirection(){
+            int dir = (int) (Math.random()*10);
+            if(dir<5) return Direction.Horizontal;
+            else return Direction.Vertical;
+        }
+
+        int getLine(int quantityCells){
+            int line = (int) (Math.random()* quantityCells);
+            return line;
+        }
+
+        private int getFirstCell(){
+            int firstCell;
+            do{
+                firstCell = (int) (Math.random() * 10);
+            }
+            while (firstCell>(GameSeaBattle.quantityCells - GameSeaBattle.size - 1));
+
+            return firstCell;
+        }
+
+        public boolean checkCells(HashMap hashMap, Direction dir){
+
+            int startLine      = (int) hashMap.get("startLine");
+            int endLine        = (int) hashMap.get("endLine");
+            int afterFirstCell = (int) hashMap.get("afterFirstCell");
+            int beforeLastCell = (int) hashMap.get("beforeLastCell");
+
+            String[][] massive = GameSeaBattle.place4Game;
+
+            if (dir == Direction.Vertical) {
+                for (int i = afterFirstCell; i <= beforeLastCell; i++) {
+                    for (int j = startLine; j <= endLine; j++) {
+                        if (massive[i][j] == null) return false;
+                    }
+                }
+            }else if(dir == Direction.Horizontal){
+                for (int i =  startLine ; i <=  endLine ; i++) {
+                    for (int j = afterFirstCell; j <= beforeLastCell; j++) {
+                        if (massive[i][j] == null) return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+
     }
 }

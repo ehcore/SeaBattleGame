@@ -6,23 +6,13 @@ public class GameSeaBattle {
     static final int size = 3;
     static String[][] place4Game;
 
-    static String[][] makeMassive(int quantityCells){
-        String str = "abcdefg";
-        String[][] place4Game = new String[quantityCells][quantityCells];
-        for(int i = 0; i<quantityCells;i++){
-            for(int j=0; j<quantityCells;j++){
-                place4Game[i][j] =  str.charAt(i) +"" + j;
-            }
-        }
-        return place4Game;
-    }
 
     public static void main(String[] args) {
 
         System.out.println("The game starting");
 
         quantityCells = 7;
-        place4Game = makeMassive(quantityCells);
+        place4Game = GameHelper.makeMassive(quantityCells);
 
         int countShip = 0;
 
@@ -39,6 +29,8 @@ public class GameSeaBattle {
         System.out.println("Created " + countShip + " ships");
 
         System.out.println("Note: name of the cell it is letter and number. Letter from a to g (lowercase), number from 0 to 6. Example: a0");
+        System.out.println("For exit from game, enter \"exit\"");
+
 
         int num = 0;
 
@@ -48,6 +40,10 @@ public class GameSeaBattle {
             BufferedReader reader = new GameHelper().getUserInput();
             try {
                 String readFromConsole = reader.readLine().trim();
+                if (readFromConsole.contains("exit")){
+                    System.out.println("exit from game");
+                    System.exit(0);
+                }
                 ShipManagement.fire(shipManage,readFromConsole);
                 num ++;
             } catch (IOException exc) {
