@@ -26,8 +26,9 @@ public class ShipManagement {
 
         do{
             Date endDate = new Date();
-            long quantitySec = endDate.getTime() - startDate.getTime();
-            if((quantitySec) > 5){ return false;}
+            long quantityMilSec = endDate.getTime() - startDate.getTime();
+            //You can use the number of iterations, but we will use the amount of time spent
+            if((quantityMilSec) > 6000){ return false;}
 
             line = managementHelper.getLine(quantityCells);
 
@@ -125,7 +126,7 @@ public class ShipManagement {
             do{
                 firstCell = (int) (Math.random() * 10);
             }
-            while (firstCell>(GameSeaBattle.quantityCells - GameSeaBattle.size - 1));
+            while (firstCell>(GameSeaBattle.quantityCells - GameSeaBattle.size));
 
             return firstCell;
         }
