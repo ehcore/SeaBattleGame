@@ -8,7 +8,15 @@ public class GameHelper {
     }
 
     static String[][] makeMassive(int quantityCells){
-        String str = "abcdefg";
+        char firstLetter = 'a';
+        char[] sequenceLetters = new char[quantityCells];
+
+        for(int i = 0 ; i< sequenceLetters.length; i++){
+            sequenceLetters[i] = firstLetter ++;
+        }
+        String str = new String(sequenceLetters);//"abcdefg";
+        //System.out.println(str);
+
         String[][] place4Game = new String[quantityCells][quantityCells];
         for(int i = 0; i<quantityCells;i++){
             for(int j=0; j<quantityCells;j++){

@@ -3,7 +3,7 @@ import java.io.*;
 public class GameSeaBattle {
 
     static int quantityCells;
-    static final int size = 3;
+    //static final int size = 3;
     static String[][] place4Game;
 
 
@@ -22,7 +22,16 @@ public class GameSeaBattle {
         ShipManagement shipManage[] = new ShipManagement[5];
         for(int i = 0; i<shipManage.length ; i++){
             shipManage[i] = new ShipManagement();
-            if(shipManage[i].createShip()){countShip++;}
+            int randomSize = 0;
+            do{
+               randomSize = (int) (Math.random()*5);
+            }while(randomSize == 0);
+
+            System.out.println("randomSize " + randomSize);
+            if(shipManage[i].createShip(randomSize)){
+
+                System.out.println("Created " + shipManage[i].ship);
+                countShip++;}
         }
 
         System.out.println();
@@ -30,7 +39,6 @@ public class GameSeaBattle {
 
         System.out.println("Note: name of the cell it is letter and number. Letter from a to g (lowercase), number from 0 to 6. Example: a0");
         System.out.println("For exit from game, enter \"exit\"");
-
 
         int num = 0;
 

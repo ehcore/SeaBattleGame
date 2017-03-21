@@ -5,11 +5,10 @@ public class ShipManagement {
 
     Ship ship;
 
-    boolean createShip(){
+    boolean createShip(int size){
         int quantityCells = GameSeaBattle.quantityCells;
-        int size = GameSeaBattle.size;
 
-        ship = new Ship();
+        ship = Ship.getShip(size);
 
         ManagementHelper managementHelper = new ManagementHelper();
 
@@ -35,7 +34,7 @@ public class ShipManagement {
             int startLine = line > 0 ? line - 1 : 0;
             int endLine   = line < (quantityCells -1) ? line + 1 : quantityCells -1;
 
-            firstCell = managementHelper.getFirstCell();
+            firstCell = managementHelper.getFirstCell(size);
             lastCell  = firstCell + size;
 
             int afterFirstCell = firstCell > 0 ? firstCell - 1 : 0;
@@ -121,12 +120,12 @@ public class ShipManagement {
             return line;
         }
 
-        private int getFirstCell(){
+        private int getFirstCell(int size){
             int firstCell;
             do{
                 firstCell = (int) (Math.random() * 10);
             }
-            while (firstCell>(GameSeaBattle.quantityCells - GameSeaBattle.size));
+            while (firstCell>(GameSeaBattle.quantityCells - size));
 
             return firstCell;
         }

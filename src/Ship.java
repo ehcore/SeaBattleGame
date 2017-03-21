@@ -1,9 +1,20 @@
 
 import java.util.*;
 
-public class Ship {
+abstract public class Ship {
 
+    int size;
+    String name;
     private ArrayList<String> locationCells;
+
+    public static Ship getShip(int size){
+        switch (size){
+            case 4: return new Cruiser(size);
+            case 3: return new Frigate(size);
+            case 2: return new Boat(size);
+            default: return new UnknownBoat(size);
+        }
+    }
 
     public ArrayList<String> getLocationCells() {
         return locationCells;
@@ -11,5 +22,32 @@ public class Ship {
 
     public void setLocationCells(ArrayList<String> locationCells) {
         this.locationCells = locationCells;
+    }
+}
+
+class Cruiser extends Ship {
+    public Cruiser(int size){
+        this.size = size;
+        this.name = "Cruiser";
+    }
+}
+
+class Frigate extends Ship {
+    public Frigate(int size){
+        this.size = size;
+        this.name = "Frigate";
+    }
+}
+class Boat extends Ship {
+    public Boat(int size){
+        this.size = size;
+        this.name = "Boat";
+    }
+}
+
+class UnknownBoat extends Ship {
+    public UnknownBoat(int size){
+        this.size = size;
+        this.name = "Boat";
     }
 }
