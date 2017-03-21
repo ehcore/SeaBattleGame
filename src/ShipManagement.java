@@ -70,9 +70,11 @@ public class ShipManagement {
             }
         }
 
+/*
         for(String cell : locationCells){
             System.out.println(cell);
         }
+*/
 
         ship.setLocationCells(locationCells);
         return true;
@@ -80,16 +82,22 @@ public class ShipManagement {
 
     static boolean fire(ShipManagement shipManage[],String cell){
 
-        System.out.println("You entered:" + cell);
+        //System.out.println("You entered:" + cell);
         for(int i = 0; i<shipManage.length ; i++){
             ArrayList<String> locationCells = shipManage[i].ship.getLocationCells();
             if(locationCells == null){continue;}
             if(locationCells.contains(cell)){
-                System.out.println("Hit! " + cell);
+                //System.out.println("Hit! " + cell);
+                System.out.println("Попал! " + cell);
                 locationCells.remove(cell);
+                if(locationCells.isEmpty()){
+                    //System.out.println("The ship " + shipManage[i].ship + " is destroyed!");
+                    System.out.println("Корабль " + shipManage[i].ship + " уничтожен!");
+                }
                 return true;}
         }
-        System.out.println("Fail! " + cell);
+        //System.out.println("Fail! " + cell);
+        System.out.println("Мимо! " + cell);
         return false;
     }
 

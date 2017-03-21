@@ -23,31 +23,35 @@ abstract public class Ship {
     public void setLocationCells(ArrayList<String> locationCells) {
         this.locationCells = locationCells;
     }
+
+    public String toString(){
+        return this.name;
+    }
 }
 
 class Cruiser extends Ship {
     public Cruiser(int size){
         this.size = size;
-        this.name = "Cruiser";
+        this.name = "Крейсер";//"Cruiser";
     }
 }
 
 class Frigate extends Ship {
     public Frigate(int size){
         this.size = size;
-        this.name = "Frigate";
+        this.name = "Фригат";//"Frigate";
     }
 }
 class Boat extends Ship {
     public Boat(int size){
         this.size = size;
-        this.name = "Boat";
+        this.name = "Катер";//"Boat";
     }
 }
 
 class UnknownBoat extends Ship {
     public UnknownBoat(int size){
         this.size = size;
-        this.name = "Boat";
+        this.name = "Неизвестная лодка";//"Unknown Boat";
     }
 }
