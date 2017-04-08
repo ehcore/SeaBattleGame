@@ -10,9 +10,11 @@ import javafx.stage.Stage;
 
 public class FieldOfGame extends Application {
 
-
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        System.out.println("dweded");
+
         primaryStage.setTitle("тест кнопок javafx");
 
         GridPane rootNode = new GridPane();
@@ -22,15 +24,17 @@ public class FieldOfGame extends Application {
 
         primaryStage.setScene(myScene);
 
-        int quantity = 10;
+        int quantity = GameSeaBattle.quantityCells;//10;
 
         Button btn[][] = new Button[quantity][quantity];
+
+        String place4Game[][] = GameSeaBattle.place4Game;//GameHelper.makeMassive(quantity);
 
         for(int i=0; i<quantity ; i++){
 
             for(int j = 0; j<quantity; j++){
 
-                btn[i][j] = new Button("i"+i + "j" + j);
+                btn[i][j] = new Button(place4Game[i][j]);
 
                 rootNode.add(btn[i][j],i,j);
 
