@@ -105,11 +105,7 @@ public class GameSeaBattle extends Application {
 
     public void start(Stage primaryStage) throws Exception {
 
-       // System.out.println("dweded");
-
         primaryStage.setTitle("Морской бой");
-
-        //BorderPane root = new BorderPane();
 
         GridPane rootNode = new GridPane();
 
@@ -139,7 +135,6 @@ public class GameSeaBattle extends Application {
 
                     if(ShipManagement.fire(shipManage,textButton)){
                         tempRefBut.setDisable(true);
-
                     }else{
                         tempRefBut.setVisible(false);
                     }
@@ -151,20 +146,9 @@ public class GameSeaBattle extends Application {
                         System.out.println("Все корабли уничтожены, поздравляю!");
                         //System.exit(0);
                     }
-                    // rootNode.add(new Label("*"),i,j);
-
                 });
-
             }
-
         }
-
-        //root.setCenter(rootNode);
-
-       // Label lb = new Label();
-        //lb.setText("terminated all!");
-
-        //root.setTop(lb);
         primaryStage.show();
     }
 }
