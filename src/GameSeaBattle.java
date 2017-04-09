@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -107,6 +109,8 @@ public class GameSeaBattle extends Application {
 
         primaryStage.setTitle("Морской бой");
 
+        //BorderPane root = new BorderPane();
+
         GridPane rootNode = new GridPane();
 
         Scene myScene = new Scene(rootNode, 276, 240);
@@ -130,11 +134,23 @@ public class GameSeaBattle extends Application {
 
                 String textButton = btn[i][j].getText();
                 Button tempRefBut = btn[i][j];
+
                 btn[i][j].setOnAction((ae)-> {
 
-                    ShipManagement.fire(shipManage,textButton);
+                    if(ShipManagement.fire(shipManage,textButton)){
+                        tempRefBut.setDisable(true);
+
+                    }else{
+                        tempRefBut.setVisible(false);
+                    }
                     //primaryStage.setTitle("Нажата кнопка " + textButton);
-                    tempRefBut.setVisible(false);
+                    //tempRefBut.setVisible(false);
+                    if(ShipManagement.isStillAliveShips(shipManage)){
+
+                    }else{
+                        System.out.println("Все корабли уничтожены, поздравляю!");
+                        //System.exit(0);
+                    }
                     // rootNode.add(new Label("*"),i,j);
 
                 });
@@ -143,7 +159,12 @@ public class GameSeaBattle extends Application {
 
         }
 
+        //root.setCenter(rootNode);
 
+       // Label lb = new Label();
+        //lb.setText("terminated all!");
+
+        //root.setTop(lb);
         primaryStage.show();
     }
 }
